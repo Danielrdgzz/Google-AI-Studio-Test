@@ -1,0 +1,5 @@
+{
+  "name": "CoordinApp",
+  "description": "\"aplicación\" para registrar y verificar las sesiones impartidas por los profesionales, así como los talleres impartidos, los usuarios beneficiados y las horas totales.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,61 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Information about users (beneficiaries) and professionals.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["professional", "beneficiary", "admin"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "name", "role"]
+    },
+    "Session": {
+      "title": "Session",
+      "description": "A session between a professional and a beneficiary.",
+      "type": "object",
+      "properties": {
+        "professionalId": { "type": "string", "description": "UID of the professional" },
+        "beneficiaryId": { "type": "string", "description": "UID of the beneficiary" },
+        "activity": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "startTime": { "type": "string", "format": "time" },
+        "endTime": { "type": "string", "format": "time" },
+        "durationMinutes": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["professionalId", "beneficiaryId", "activity", "date", "startTime", "endTime"]
+    },
+    "Workshop": {
+      "title": "Workshop",
+      "description": "Information about workshops/talleres.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "type": { "type": "string" },
+        "professionalId": { "type": "string" },
+        "beneficiaryIds": { "type": "array", "items": { "type": "string" } },
+        "date": { "type": "string", "format": "date" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "professionalId", "date"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/sessions/{sessionId}": {
+      "schema": "Session",
+      "description": "Individual sessions"
+    },
+    "/workshops/{workshopId}": {
+      "schema": "Workshop",
+      "description": "Workshops and group activities"
+    }
+  }
+}
